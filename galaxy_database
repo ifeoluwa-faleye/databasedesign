@@ -1,0 +1,63 @@
+postgres=> CREATE DATABASE universe;
+postgres=> \c universe
+universe=> CREATE TABLE galaxy();
+CREATE TABLE
+universe=> CREATE TABLE star();
+CREATE TABLE
+universe=> CREATE TABLE planet();
+CREATE TABLE
+universe=> CREATE TABLE moon();
+CREATE TABLE
+universe=> \d
+            List of relations
++--------+--------+-------+--------------+
+| Schema |  Name  | Type  |    Owner     |
++--------+--------+-------+--------------+
+| public | galaxy | table | freecodecamp |
+| public | moon   | table | freecodecamp |
+| public | planet | table | freecodecamp |
+| public | star   | table | freecodecamp |
++--------+--------+-------+--------------+
+(4 rows)
+
+universe=> ALTER TABLE galaxy ADD COLUMN name VARCHAR(30);
+ALTER TABLE
+universe=> \d galaxy;
+                       Table "public.galaxy"
++--------+-----------------------+-----------+----------+---------+
+| Column |         Type          | Collation | Nullable | Default |
++--------+-----------------------+-----------+----------+---------+
+| name   | character varying(30) |           |          |         |
++--------+-----------------------+-----------+----------+---------+
+
+universe=> ALTER TABLE moon ADD COLUMN name VARCHAR(30);
+ALTER TABLE
+universe=> ALTER TABLE star ADD COLUMN name VARCHAR(30);
+ALTER TABLE
+universe=> ALTER TABLE star ADD COLUMN name VARCHAR(30);
+ERROR:  column "name" of relation "star" already exists
+universe=> ALTER TABLE planet ADD COLUMN name VARCHAR(30);
+ALTER TABLE
+universe=> \d star;
+                        Table "public.star"
++--------+-----------------------+-----------+----------+---------+
+| Column |         Type          | Collation | Nullable | Default |
++--------+-----------------------+-----------+----------+---------+
+| name   | character varying(30) |           |          |         |
++--------+-----------------------+-----------+----------+---------+
+
+universe=> \d planet
+                       Table "public.planet"
++--------+-----------------------+-----------+----------+---------+
+| Column |         Type          | Collation | Nullable | Default |
++--------+-----------------------+-----------+----------+---------+
+| name   | character varying(30) |           |          |         |
++--------+-----------------------+-----------+----------+---------+
+
+universe=> \d moon
+                        Table "public.moon"
++--------+-----------------------+-----------+----------+---------+
+| Column |         Type          | Collation | Nullable | Default |
++--------+-----------------------+-----------+----------+---------+
+| name   | character varying(30) |           |          |         |
++--------+-----------------------+-----------+----------+---------+
