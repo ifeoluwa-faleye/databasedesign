@@ -203,4 +203,17 @@ SELECT * FROM characters ORDER BY character_id;
 +--------------+--------+------------------+----------------+
 (7 rows)
 
-mario_database=> ALTER TABLE characters ADD PRIMARY KEY(name);
+mario_database=> ALTER TABLE characters ADD PRIMARY KEY(character_id);
+mario_database=> ALTER TABLE
+\d characters
+mario_database=>                                              Table "public.characters"
++----------------+-----------------------+-----------+----------+--------------------------------------------------+
+|     Column     |         Type          | Collation | Nullable |                     Default                      |
++----------------+-----------------------+-----------+----------+--------------------------------------------------+
+| character_id   | integer               |           | not null | nextval('characters_character_id_seq'::regclass) |
+| name           | character varying(30) |           | not null |                                                  |
+| homeland       | character varying(60) |           |          |                                                  |
+| favorite_color | character varying(30) |           |          |                                                  |
++----------------+-----------------------+-----------+----------+--------------------------------------------------+
+Indexes:
+    "characters_pkey" PRIMARY KEY, btree (character_id)
