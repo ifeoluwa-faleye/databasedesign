@@ -1,0 +1,78 @@
+postgres=> \l
+postgres=>                                    List of databases
++----------------+--------------+----------+---------+---------+-----------------------+
+|      Name      |    Owner     | Encoding | Collate |  Ctype  |   Access privileges   |
++----------------+--------------+----------+---------+---------+-----------------------+
+| mario_database | freecodecamp | UTF8     | C.UTF-8 | C.UTF-8 |                       |
+| postgres       | postgres     | UTF8     | C.UTF-8 | C.UTF-8 |                       |
+| template0      | postgres     | UTF8     | C.UTF-8 | C.UTF-8 | =c/postgres          +|
+|                |              |          |         |         | postgres=CTc/postgres |
+| template1      | postgres     | UTF8     | C.UTF-8 | C.UTF-8 | =c/postgres          +|
+|                |              |          |         |         | postgres=CTc/postgres |
++----------------+--------------+----------+---------+---------+-----------------------+
+(4 rows)
+
+\d          c mario_database;
+SSL connection (protocol: TLSv1.3, cipher: TLS_AES_256_GCM_SHA384, bits: 256, compression: off)
+You are now connected to database "mario_database" as user "freecodecamp".
+mario_database=> \d
+mario_database=>                         List of relations
++--------+-----------------------------+----------+--------------+
+| Schema |            Name             |   Type   |    Owner     |
++--------+-----------------------------+----------+--------------+
+| public | characters                  | table    | freecodecamp |
+| public | characters_character_id_seq | sequence | freecodecamp |
++--------+-----------------------------+----------+--------------+
+(2 rows)
+
+\d characters
+mario_database=>                                      Table "public.characters"
++--------------+---------+-----------+----------+--------------------------------------------------+
+|    Column    |  Type   | Collation | Nullable |                     Default                      |
++--------------+---------+-----------+----------+--------------------------------------------------+
+| character_id | integer |           | not null | nextval('characters_character_id_seq'::regclass) |
++--------------+---------+-----------+----------+--------------------------------------------------+
+
+ALTER TABLE characters ADD COLUMN name VARCHAR(30) NOT NULL;
+mario_database=> ALTER TABLE
+ALTER TABLE characters ADD COLUMN homeland VARCHAR(60);
+ALTER TABLE
+mario_database=> ALTER TABLE characters ADD COLUMN favorite_color VARCHAR(30);
+mario_database=> ALTER TABLE
+\d characters
+mario_database=>                                              Table "public.characters"
++----------------+-----------------------+-----------+----------+--------------------------------------------------+
+|     Column     |         Type          | Collation | Nullable |                     Default                      |
++----------------+-----------------------+-----------+----------+--------------------------------------------------+
+| character_id   | integer               |           | not null | nextval('characters_character_id_seq'::regclass) |
+| name           | character varying(30) |           | not null |                                                  |
+| homeland       | character varying(60) |           |          |                                                  |
+| favorite_color | character varying(30) |           |          |                                                  |
++----------------+-----------------------+-----------+----------+--------------------------------------------------+
+
+INSERT INTO characters(name, homeland, favorite_color) VALUES('Mario', 'Mushroom Kingdom', 'Red');
+INSERT 0 1
+mario_database=> SELECT * FROM characters;
+mario_database=>                               
++--------------+-------+------------------+----------------+
+| character_id | name  |     homeland     | favorite_color |
++--------------+-------+------------------+----------------+
+|            1 | Mario | Mushroom Kingdom | Red            |
++--------------+-------+------------------+----------------+
+(1 row)
+
+INSERT INTO characters(name, homeland, favorite_color) VALUES('Luigi', 'Mushroom Kingdom', 'Green');
+INSERT 0 1
+mario_database=> SELECT * FROM characters;
+                              
++--------------+-------+------------------+----------------+
+| character_id | name  |     homeland     | favorite_color |
++--------------+-------+------------------+----------------+
+|            1 | Mario | Mushroom Kingdom | Red            |
+|            2 | Luigi | Mushroom Kingdom | Green          |
++--------------+-------+------------------+----------------+
+(2 rows)
+
+mario_database=> INSERT INTO characters(name, homeland, favorite_color) VALUES('Peach', 'Mushroom Kingdom', 'Pink');
+INSERT 0 1
+mario_database=> INSERT INTO characters(name, homeland, favorite_color) VALUES('Toadstool', 'Mushroom Kingdom', 'Red'), ('Bowser', Mushroom Kingdom', 'Green');
