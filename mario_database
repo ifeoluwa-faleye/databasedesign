@@ -144,7 +144,7 @@ mario_database=>
 +--------------+--------+------------------+----------------+
 (7 rows)
 
-UPDATE characters SET name = 'Mario' WHERE characters                _id = 1;
+UPDATE characters SET name = 'Mario' WHERE character_id = 1;
 UPDATE 1
 mario_database=> SELECT * FROM characters;
                                
@@ -217,3 +217,131 @@ mario_database=>                                              Table "public.char
 +----------------+-----------------------+-----------+----------+--------------------------------------------------+
 Indexes:
     "characters_pkey" PRIMARY KEY, btree (character_id)
+mario_database=> CREATE TABLE more_info();
+CREATE TABLE
+mario_database=> \d
+                        List of relations
++--------+-----------------------------+----------+--------------+
+| Schema |            Name             |   Type   |    Owner     |
++--------+-----------------------------+----------+--------------+
+| public | characters                  | table    | freecodecamp |
+| public | characters_character_id_seq | sequence | freecodecamp |
+| public | more_info                   | table    | freecodecamp |
++--------+-----------------------------+----------+--------------+
+(3 rows)
+
+mario_database=> \d characters;
+                                             Table "public.characters"
++----------------+-----------------------+-----------+----------+--------------------------------------------------+
+|     Column     |         Type          | Collation | Nullable |                     Default                      |
++----------------+-----------------------+-----------+----------+--------------------------------------------------+
+| character_id   | integer               |           | not null | nextval('characters_character_id_seq'::regclass) |
+| name           | character varying(30) |           | not null |                                                  |
+| homeland       | character varying(60) |           |          |                                                  |
+| favorite_color | character varying(30) |           |          |                                                  |
++----------------+-----------------------+-----------+----------+--------------------------------------------------+
+Indexes:
+    "characters_pkey" PRIMARY KEY, btree (character_id)
+
+mario_database=> ALTER TABLE more_info ADD COLUMN more_info_id SERIAL;
+ALTER TABLE                                 
+mario_database=> ALTER TABLE more_info ADD PRIMARY KEY(more_info_id);
+ALTER TABLE
+mario_database=> \d
+mario_database=>                         List of relations
++--------+-----------------------------+----------+--------------+
+| Schema |            Name             |   Type   |    Owner     |
++--------+-----------------------------+----------+--------------+
+| public | characters                  | table    | freecodecamp |
+| public | characters_character_id_seq | sequence | freecodecamp |
+| public | more_info                   | table    | freecodecamp |
+| public | more_info_more_info_id_seq  | sequence | freecodecamp |
++--------+-----------------------------+----------+--------------+
+(4 rows)
+
+ALTER TABLE more_info ADD COLUMN birthday DATE;
+mario_database=> ALTER TABLE
+ALTER TABLE more_info ADD COLUMN height INT;
+ALTER TABLE
+mario_database=> ALTER TABLE more_info ADD COLUMN weight NUMERIC(4, 1);
+ALTER TABLE
+mario_database=> \d more_info;
+                                        Table "public.more_info"
++--------------+--------------+-----------+----------+-------------------------------------------------+
+|    Column    |     Type     | Collation | Nullable |                     Default                     |
++--------------+--------------+-----------+----------+-------------------------------------------------+
+| more_info_id | integer      |           | not null | nextval('more_info_more_info_id_seq'::regclass) |
+| birthday     | date         |           |          |                                                 |
+| height       | integer      |           |          |                                                 |
+| weight       | numeric(4,1) |           |          |                                                 |
++--------------+--------------+-----------+----------+-------------------------------------------------+
+Indexes:
+    "more_info_pkey" PRIMARY KEY, btree (more_info_id)
+mario_database=> ALTER TABLE more_info ADD COLUMN character_id INT REFERENCES characters(character_id);
+ALTER TABLE
+mario_database=> \d more_info;
+mario_database=>                                         Table "public.more_info"
++--------------+--------------+-----------+----------+-------------------------------------------------+
+|    Column    |     Type     | Collation | Nullable |                     Default                     |
++--------------+--------------+-----------+----------+-------------------------------------------------+
+| more_info_id | integer      |           | not null | nextval('more_info_more_info_id_seq'::regclass) |
+| birthday     | date         |           |          |                                                 |
+| height       | integer      |           |          |                                                 |
+| weight       | numeric(4,1) |           |          |                                                 |
+| character_id | integer      |           |          |                                                 |
++--------------+--------------+-----------+----------+-------------------------------------------------+
+Indexes:
+    "more_info_pkey" PRIMARY KEY, btree (more_info_id)
+Foreign-key constraints:
+    "more_info_character_id_fkey" FOREIGN KEY (character_id) REFERENCES characters(character_id)
+
+ALTER TABLE more_info ADD UNIQUE(character_id);
+mario_database=> ALTER TABLE
+ALTER TABLE more_info ALTER COLUMN character_id SET NOT NULL;
+mario_database=> ALTER TABLE
+\d more_info;
+mario_database=>                                         Table "public.more_info"
++--------------+--------------+-----------+----------+-------------------------------------------------+
+|    Column    |     Type     | Collation | Nullable |                     Default                     |
++--------------+--------------+-----------+----------+-------------------------------------------------+
+| more_info_id | integer      |           | not null | nextval('more_info_more_info_id_seq'::regclass) |
+| birthday     | date         |           |          |                                                 |
+| height       | integer      |           |          |                                                 |
+| weight       | numeric(4,1) |           |          |                                                 |
+| character_id | integer      |           | not null |                                                 |
++--------------+--------------+-----------+----------+-------------------------------------------------+
+Indexes:
+    "more_info_pkey" PRIMARY KEY, btree (more_info_id)
+    "more_info_character_id_key" UNIQUE CONSTRAINT, btree (character_id)
+Foreign-key constraints:
+    "more_info_character_id_fkey" FOREIGN KEY (character_id) REFERENCES characters(character_id)
+
+SELECT character_id FROM characters;
+mario_database=>         
++--------------+
+| character_id |
++--------------+
+|            2 |
+|            3 |
+|            7 |
+|            6 |
+|            1 |
+|            4 |
+|            5 |
++--------------+
+(7 rows)
+
+SELECT character_id, name FROM characters;
+             
++--------------+--------+
+| character_id |  name  |
++--------------+--------+
+|            2 | Luigi  |
+|            3 | Peach  |
+|            7 | Yoshi  |
+|            6 | Daisy  |
+|            1 | Mario  |
+|            4 | Toad   |
+|            5 | Bowser |
++--------------+--------+
+(7 rows)
