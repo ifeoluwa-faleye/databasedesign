@@ -345,3 +345,183 @@ SELECT character_id, name FROM characters;
 |            5 | Bowser |
 +--------------+--------+
 (7 rows)
+mario_database=> INSERT INTO more_info(birthday, height, weight, character_id) VALUES('1981-07-09', 155, 64.5, 1);
+INSERT 0 1
+mario_database=> SELECT * FROM more_info;
+mario_database=>                                
++--------------+------------+--------+--------+--------------+
+| more_info_id |  birthday  | height | weight | character_id |
++--------------+------------+--------+--------+--------------+
+|            2 | 1981-07-09 |    155 |   64.5 |            1 |
++--------------+------------+--------+--------+--------------+
+(1 row)
+
+mario_database=> UPDATE more_info SET more_info_id = 1 WHERE height = 155;
+UPDATE 1
+mario_database=> SELECT * FROM more_info;
+                               
++--------------+------------+--------+--------+--------------+
+| more_info_id |  birthday  | height | weight | character_id |
++--------------+------------+--------+--------+--------------+
+|            1 | 1981-07-09 |    155 |   64.5 |            1 |
++--------------+------------+--------+--------+--------------+
+(1 row)
+                                              ^
+mario_database=> UPDATE more_info SET more_info_id = 2 WHERE height = 155;
+UPDATE 1
+mario_database=> SELECT * FROM more_info;
+                               
++--------------+------------+--------+--------+--------------+
+| more_info_id |  birthday  | height | weight | character_id |
++--------------+------------+--------+--------+--------------+
+|            2 | 1981-07-09 |    155 |   64.5 |            1 |
++--------------+------------+--------+--------+--------------+
+(1 row)
+
+mario_database=> SELECT character_id, name FROM characters;
+mario_database=>              
++--------------+--------+
+| character_id |  name  |
++--------------+--------+
+|            2 | Luigi  |
+|            3 | Peach  |
+|            7 | Yoshi  |
+|            6 | Daisy  |
+|            1 | Mario  |
+|            4 | Toad   |
+|            5 | Bowser |
++--------------+--------+
+(7 rows)
+
+INSERT INTO more_info(birthday, height, weight, character_id) VALUES('1983-07-14', 175, 48.8, 2);
+mario_database=> INSERT 0 1
+SELECT * FROM more_info;
+mario_database=>                                
++--------------+------------+--------+--------+--------------+
+| more_info_id |  birthday  | height | weight | character_id |
++--------------+------------+--------+--------+--------------+
+|            2 | 1981-07-09 |    155 |   64.5 |            1 |
+|            3 | 1983-07-14 |    175 |   48.8 |            2 |
++--------------+------------+--------+--------+--------------+
+(2 rows)
+
+INSERT INTO more_
+mario_database=> SELECT character_id, name FROM characters;
+mario_database=>              
++--------------+--------+
+| character_id |  name  |
++--------------+--------+
+|            2 | Luigi  |
+|            3 | Peach  |
+|            7 | Yoshi  |
+|            6 | Daisy  |
+|            1 | Mario  |
+|            4 | Toad   |
+|            5 | Bowser |
++--------------+--------+
+(7 rows)
+
+INSERT INTO more_info(birthday, height, weight, character_id) VALUES('1985-10-18', 173, 52.2, 3);
+INSERT 0 1
+mario_database=> SELECT character_id, name FROM characters WHERE name = 'Toad';
+            
++--------------+------+
+| character_id | name |
++--------------+------+
+|            4 | Toad |
++--------------+------+
+(1 row)
+
+mario_database=> INSERT INTO more_info(birthday, height, weight, character_id) VALUES('1950-01-10', 66, 35.6, 4);
+INSERT 0 1
+mario_database=> SELECT * FROM more_info;
+                               
++--------------+------------+--------+--------+--------------+
+| more_info_id |  birthday  | height | weight | character_id |
++--------------+------------+--------+--------+--------------+
+|            2 | 1981-07-09 |    155 |   64.5 |            1 |
+|            3 | 1983-07-14 |    175 |   48.8 |            2 |
+|            4 | 1985-10-18 |    173 |   52.2 |            3 |
+|            5 | 1950-01-10 |     66 |   35.6 |            4 |
++--------------+------------+--------+--------+--------------+
+(4 rows)
+
+mario_database=> SELECT character_id, name FROM characters WHERE name = 'Bowser';
+             
++--------------+--------+
+| character_id |  name  |
++--------------+--------+
+|            5 | Bowser |
++--------------+--------+
+(1 row)
+
+mario_database=> INSERT INTO more_info(birthday, height, weight, character_id) VALUES('1990-10-29', 258, 300, 5);
+INSERT 0 1
+mario_database=> SELECT character_id, name FROM characters WHERE name = 'Daisy';
+mario_database=>             
++--------------+-------+
+| character_id | name  |
++--------------+-------+
+|            6 | Daisy |
++--------------+-------+
+(1 row)
+
+INSERT INTO more_info(birthday, height, weight, character_id) VALUES('1989-07-31', NULL, NULL, 6);
+INSERT 0 1
+mario_database=> SELECT * FROM more_info;
+mario_database=>                                
++--------------+------------+--------+--------+--------------+
+| more_info_id |  birthday  | height | weight | character_id |
++--------------+------------+--------+--------+--------------+
+|            2 | 1981-07-09 |    155 |   64.5 |            1 |
+|            3 | 1983-07-14 |    175 |   48.8 |            2 |
+|            4 | 1985-10-18 |    173 |   52.2 |            3 |
+|            5 | 1950-01-10 |     66 |   35.6 |            4 |
+|            6 | 1990-10-29 |    258 |  300.0 |            5 |
+|            7 | 1989-07-31 |        |        |            6 |
++--------------+------------+--------+--------+--------------+
+(6 rows)
+
+SELECT character_id, name FROM characters WHERE name = 'Yoshi';
+mario_database=>             
++--------------+-------+
+| character_id | name  |
++--------------+-------+
+|            7 | Yoshi |
++--------------+-------+
+(1 row)
+
+INSERT INTO more_info(birthday, height, weight, character_id) VALUES('1990-04-13', 162, 59.1, 7);
+mario_database=> INSERT 0 1
+SELECT * FROM more_info;
+mario_database=>                                
++--------------+------------+--------+--------+--------------+
+| more_info_id |  birthday  | height | weight | character_id |
++--------------+------------+--------+--------+--------------+
+|            2 | 1981-07-09 |    155 |   64.5 |            1 |
+|            3 | 1983-07-14 |    175 |   48.8 |            2 |
+|            4 | 1985-10-18 |    173 |   52.2 |            3 |
+|            5 | 1950-01-10 |     66 |   35.6 |            4 |
+|            6 | 1990-10-29 |    258 |  300.0 |            5 |
+|            7 | 1989-07-31 |        |        |            6 |
+|            8 | 1990-04-13 |    162 |   59.1 |            7 |
++--------------+------------+--------+--------+--------------+
+(7 rows)                                        ^
+mario_database=> ALTER TABLE more_info RENAME height TO height_in_cm;
+mario_database=> ALTER TABLE
+ALTER TABLE more_info RENAME weight TO weight_in_kg;
+ALTER TABLE
+mario_database=> SELECT * FROM more_info;
+                                     
++--------------+------------+--------------+--------------+--------------+
+| more_info_id |  birthday  | height_in_cm | weight_in_kg | character_id |
++--------------+------------+--------------+--------------+--------------+
+|            2 | 1981-07-09 |          155 |         64.5 |            1 |
+|            3 | 1983-07-14 |          175 |         48.8 |            2 |
+|            4 | 1985-10-18 |          173 |         52.2 |            3 |
+|            5 | 1950-01-10 |           66 |         35.6 |            4 |
+|            6 | 1990-10-29 |          258 |        300.0 |            5 |
+|            7 | 1989-07-31 |              |              |            6 |
+|            8 | 1990-04-13 |          162 |         59.1 |            7 |
++--------------+------------+--------------+--------------+--------------+
+(7 rows)
