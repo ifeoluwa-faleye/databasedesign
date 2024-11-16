@@ -525,3 +525,21 @@ mario_database=> SELECT * FROM more_info;
 |            8 | 1990-04-13 |          162 |         59.1 |            7 |
 +--------------+------------+--------------+--------------+--------------+
 (7 rows)
+mario_database=> CREATE TABLE sounds(sound_id SERIAL PRIMARY KEY);
+CREATE TABLE
+mario_database=>                         List of relations
++--------+-----------------------------+----------+--------------+
+| Schema |            Name             |   Type   |    Owner     |
++--------+-----------------------------+----------+--------------+
+| public | characters                  | table    | freecodecamp |
+| public | characters_character_id_seq | sequence | freecodecamp |
+| public | more_info                   | table    | freecodecamp |
+| public | more_info_more_info_id_seq  | sequence | freecodecamp |
+| public | sounds                      | table    | freecodecamp |
+| public | sounds_sound_id_seq         | sequence | freecodecamp |
++--------+-----------------------------+----------+--------------+
+(6 rows)
+
+ALTER TABLE sound
+mario_database=> ALTER TABLE sounds ADD COLUMN filename VARCHAR(40) NOT NULL UNIQUE;
+ALTER TABLE
