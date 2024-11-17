@@ -600,5 +600,25 @@ mario_database=> SELECT * FROM sounds;
 |        8 | yahoo.wav    |            1 |
 +----------+--------------+--------------+
 (8 rows)
+mario_database=> CREATE TABLE actions(action_id SERIAL PRIMARY KEY);
+CREATE TABLE
+mario_database=> ALTER TABLE actions ADD COLUMN action VARCHAR(20) NOT NULL UNIQUE;
+ALTER TABLE
+mario_database=> INSERT INTO actions(action) VALUES('run');
+INSERT 0 1
+mario_database=> INSERT INTO actions(action) VALUES('jump');
+INSERT 0 1
+mario_database=> INSERT INTO actions(action) VALUES('duck');
+mario_database=> INSERT 0 1
+SELECT * FROM actions;
+           
++-----------+--------+
+| action_id | action |
++-----------+--------+
+|         1 | run    |
+|         2 | jump   |
+|         3 | duck   |
++-----------+--------+
+(3 rows)
 mario_database=> ALTER TABLE sounds ADD COLUMN filename VARCHAR(40) NOT NULL UNIQUE;
 ALTER TABLE
