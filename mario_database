@@ -12,7 +12,7 @@ postgres=>                                    List of databases
 +----------------+--------------+----------+---------+---------+-----------------------+
 (4 rows)
 
-\d          c mario_database;
+\c mario_database;
 SSL connection (protocol: TLSv1.3, cipher: TLS_AES_256_GCM_SHA384, bits: 256, compression: off)
 You are now connected to database "mario_database" as user "freecodecamp".
 mario_database=> \d
