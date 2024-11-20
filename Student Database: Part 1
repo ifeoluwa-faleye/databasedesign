@@ -1,0 +1,64 @@
+CREATE DATABASE students;
+CREATE DATABASE
+postgres=> \l
+postgres=>                                  List of databases
++-----------+--------------+----------+---------+---------+-----------------------+
+|   Name    |    Owner     | Encoding | Collate |  Ctype  |   Access privileges   |
++-----------+--------------+----------+---------+---------+-----------------------+
+| postgres  | postgres     | UTF8     | C.UTF-8 | C.UTF-8 |                       |
+| students  | freecodecamp | UTF8     | C.UTF-8 | C.UTF-8 |                       |
+| template0 | postgres     | UTF8     | C.UTF-8 | C.UTF-8 | =c/postgres          +|
+|           |              |          |         |         | postgres=CTc/postgres |
+| template1 | postgres     | UTF8     | C.UTF-8 | C.UTF-8 | =c/postgres          +|
+|           |              |          |         |         | postgres=CTc/postgres |
++-----------+--------------+----------+---------+---------+-----------------------+
+(4 rows)
+
+\c studet
+postgres=> \c students;
+SSL connection (protocol: TLSv1.3, cipher: TLS_AES_256_GCM_SHA384, bits: 256, compression: off)
+You are now connected to database "students" as user "freecodecamp".
+students=> CREATE TABLE students();
+CREATE TABLE
+students=> CREATE TABLE majors();
+students=> CREATE TABLE
+CREATE TABLE courses;
+students=> CREATE TABLE courses();
+CREATE TABLE
+students=> CREATE TABLE majors_courses();
+CREATE TABLE
+students=> \d
+students=>                 List of relations
++--------+----------------+-------+--------------+
+| Schema |      Name      | Type  |    Owner     |
++--------+----------------+-------+--------------+
+| public | courses        | table | freecodecamp |
+| public | majors         | table | freecodecamp |
+| public | majors_courses | table | freecodecamp |
+| public | students       | table | freecodecamp |
++--------+----------------+-------+--------------+
+(4 rows)
+
+ALTER TABLE
+students=> ALTER TABLE students ADD COLUMN student_id SERIAL PRIMARY KEY;
+students=> ALTER TABLE
+ALTER TABLE students ADD COLUMN first_name VARCHAR(50) NOT NULL;
+students=> ALTER TABLE
+ALTER TABLE
+students=> ALTER TABLE students ADD COLUMN last_name VARCHAR(50) NOT NULL;
+students=> ALTER TABLE
+ALTER TABLE students ADD COLUMN major_id INT;
+students=> ALTER TABLE
+ALTER TABLE students ADD COLUMN gpa NUMERIC(2,1);
+students=> ALTER TABLE
+students-> \d
+students->                       List of relations
++--------+-------------------------+----------+--------------+
+| Schema |          Name           |   Type   |    Owner     |
++--------+-------------------------+----------+--------------+
+| public | courses                 | table    | freecodecamp |
+| public | majors                  | table    | freecodecamp |
+| public | majors_courses          | table    | freecodecamp |
+| public | students                | table    | freecodecamp |
+| public | students_student_id_seq | sequence | freecodecamp |
++--------+-------------------------+----------+--------------+
