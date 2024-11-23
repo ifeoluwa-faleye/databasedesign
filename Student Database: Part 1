@@ -145,3 +145,35 @@ students=> ALTER TABLE
 Foreign-key constraints:
     "majors_courses_course_id_fkey" FOREIGN KEY (course_id) REFERENCES courses(course_id)
     "majors_courses_major_id_fkey" FOREIGN KEY (major_id) REFERENCES majors(major_id)
+students=> ALTER TABLE majors_courses ADD PRIMARY KEY(major_id, course_id);
+ALTER TABLE
+students=> \d majors_courses;
+students=>              Table "public.majors_courses"
++-----------+---------+-----------+----------+---------+
+|  Column   |  Type   | Collation | Nullable | Default |
++-----------+---------+-----------+----------+---------+
+| major_id  | integer |           | not null |         |
+| course_id | integer |           | not null |         |
++-----------+---------+-----------+----------+---------+
+Indexes:
+    "majors_courses_pkey" PRIMARY KEY, btree (major_id, course_id)
+Foreign-key constraints:
+    "majors_courses_course_id_fkey" FOREIGN KEY (course_id) REFERENCES courses(course_id)
+    "majors_courses_major_id_fkey" FOREIGN KEY (major_id) REFERENCES majors(major_id)
+
+\d
+                      List of relations
++--------+-------------------------+----------+--------------+
+| Schema |          Name           |   Type   |    Owner     |
++--------+-------------------------+----------+--------------+
+| public | courses                 | table    | freecodecamp |
+| public | courses_course_id_seq   | sequence | freecodecamp |
+| public | majors                  | table    | freecodecamp |
+| public | majors_courses          | table    | freecodecamp |
+| public | majors_major_id_seq     | sequence | freecodecamp |
+| public | students                | table    | freecodecamp |
+| public | students_student_id_seq | sequence | freecodecamp |
++--------+-------------------------+----------+--------------+
+(7 rows)
+
+students=> 
