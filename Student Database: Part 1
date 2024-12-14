@@ -286,3 +286,90 @@ students=>
 +------------+------------+-----------+----------+-----+
 |          1 | Rhea       | Kellems   |        1 | 2.5 |
 +------------+------------+-----------+----------+-----+
+students=> INSERT INTO majors(major) VALUES('Database Administration');
+INSERT 0 1
+students=> SELECT * FROM majors;
+                   
++----------+-------------------------+
+| major_id |          major          |
++----------+-------------------------+
+|        1 | Database Administration |
++----------+-------------------------+
+(1 row)
+
+students=> \d courses;
+students=>                                           Table "public.courses"
++-----------+------------------------+-----------+----------+--------------------------------------------+
+|  Column   |          Type          | Collation | Nullable |                  Default                   |
++-----------+------------------------+-----------+----------+--------------------------------------------+
+| course_id | integer                |           | not null | nextval('courses_course_id_seq'::regclass) |
+| course    | character varying(100) |           | not null |                                            |
++-----------+------------------------+-----------+----------+--------------------------------------------+
+Indexes:
+    "courses_pkey" PRIMARY KEY, btree (course_id)
+Referenced by:
+    TABLE "majors_courses" CONSTRAINT "majors_courses_course_id_fkey" FOREIGN KEY (course_id) REFERENCES courses(course_id)
+
+INSERT INTO
+students=> INSERT INTO courses(course) VALUES('Data Structures and Algorithms');
+INSERT 0 1
+students=> SELECT * FROM courses;
+students=>                        
++-----------+--------------------------------+
+| course_id |             course             |
++-----------+--------------------------------+
+|         1 | Data Structures and Algorithms |
++-----------+--------------------------------+
+(1 row)
+
+\d majors_courses;
+students=>              Table "public.majors_courses"
++-----------+---------+-----------+----------+---------+
+|  Column   |  Type   | Collation | Nullable | Default |
++-----------+---------+-----------+----------+---------+
+| major_id  | integer |           | not null |         |
+| course_id | integer |           | not null |         |
++-----------+---------+-----------+----------+---------+
+Indexes:
+    "majors_courses_pkey" PRIMARY KEY, btree (major_id, course_id)
+Foreign-key constraints:
+    "majors_courses_course_id_fkey" FOREIGN KEY (course_id) REFERENCES courses(course_id)
+    "majors_courses_major_id_fkey" FOREIGN KEY (major_id) REFERENCES majors(major_id)
+
+INSERT INTO majors_courses(major_id, course_id) VALUES(1, 1);
+INSERT 0 1
+students=> SELECT * FROM majors_courses;
+students=>             
++----------+-----------+
+| major_id | course_id |
++----------+-----------+
+|        1 |         1 |
++----------+-----------+
+(1 row)
+
+\d students;
+students=>                                           Table "public.students"
++------------+-----------------------+-----------+----------+----------------------------------------------+
+|   Column   |         Type          | Collation | Nullable |                   Default                    |
++------------+-----------------------+-----------+----------+----------------------------------------------+
+| student_id | integer               |           | not null | nextval('students_student_id_seq'::regclass) |
+| first_name | character varying(50) |           | not null |                                              |
+| last_name  | character varying(50) |           | not null |                                              |
+| major_id   | integer               |           |          |                                              |
+| gpa        | numeric(2,1)          |           |          |                                              |
++------------+-----------------------+-----------+----------+----------------------------------------------+
+Indexes:
+    "students_pkey" PRIMARY KEY, btree (student_id)
+Foreign-key constraints:
+    "students_major_id_fkey" FOREIGN KEY (major_id) REFERENCES majors(major_id)
+
+INSERT INTO students(first_name, last_name, major_id, gpa) VALUES('Rhea', 'Kellems', 1, 2.5);
+students=> INSERT 0 1
+SELECT * FROm          M students;
+students=>                             
++------------+------------+-----------+----------+-----+
+| student_id | first_name | last_name | major_id | gpa |
++------------+------------+-----------+----------+-----+
+|          1 | Rhea       | Kellems   |        1 | 2.5 |
++------------+------------+-----------+----------+-----+
+(1 row)
